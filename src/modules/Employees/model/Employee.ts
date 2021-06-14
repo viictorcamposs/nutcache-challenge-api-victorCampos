@@ -9,6 +9,7 @@ export class Employee {
   cpf: string;
   startDate: Date;
   team?: string;
+  created_at: Date;
 
   constructor() {
     if (!this.id) {
