@@ -49,6 +49,7 @@ export class EmployeesRepository implements IEmployeesRepository {
 
     Object.assign(newEmployee, {
       ...employee,
+      created_at: new Date(),
     });
 
     this.employees.push(newEmployee);
@@ -57,8 +58,10 @@ export class EmployeesRepository implements IEmployeesRepository {
   }
 
   edit(id: string, updatedData: IUpdateEmployeeDTO): Employee {
-    const editedEmployee: Employee = {
-      id,
+    const employee = this.findById(id);
+
+    const editedEmployee = {
+      ...employee,
       ...updatedData,
     };
 
