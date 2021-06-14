@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { Employee } from "../../model/Employee";
 import {
   IEmployeesRepository,
@@ -15,16 +16,16 @@ export class EditEmployeeUseCase {
     const employee = this.employeesRepository.findById(id);
 
     if (!employee) {
-      throw new Error("Error: Employee not found.").message;
+      throw new AppError("Error: Employee not found.");
     }
 
     const cpfAlreadyExists = this.employeesRepository.findByCpf(data.cpf);
     const emailAlreadyExists = this.employeesRepository.findByEmail(data.email);
 
     if (employee.cpf !== data.cpf && cpfAlreadyExists) {
-      throw new Error("Error: CPF already exists.").message;
+      throw new AppError("Error: CPF already exists.", 401);
     } else if (employee.email !== data.email && emailAlreadyExists) {
-      throw new Error("Error: Email already exists.").message;
+      throw new AppError("Error: Email already exists.", 401);
     }
 
     const editedEmployee = this.employeesRepository.edit(id, data);

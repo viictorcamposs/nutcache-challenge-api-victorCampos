@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { Employee } from "../../model/Employee";
 import {
   ICreateEmployeeDTO,
@@ -15,16 +16,16 @@ export class CreateEmployeeUseCase {
     const { name, cpf, birth, email, gender, startDate } = data;
 
     if (!name || !cpf || !birth || !email || !gender || !startDate) {
-      throw new Error("Error: All the fields must be filled.").message;
+      throw new AppError("Error: All the fields must be filled.");
     }
 
     const cpfAlreadyExists = this.employeesRepository.findByCpf(cpf);
     const emailAlreadyExists = this.employeesRepository.findByEmail(email);
 
     if (cpfAlreadyExists) {
-      throw new Error("Error: CPF already exists.").message;
+      throw new AppError("Error: CPF already exists.", 401);
     } else if (emailAlreadyExists) {
-      throw new Error("Error: Email already exists.").message;
+      throw new AppError("Error: Email already exists.", 401);
     }
 
     const newEmployee = this.employeesRepository.create(data);

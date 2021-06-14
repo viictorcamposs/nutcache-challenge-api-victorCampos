@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { IEmployeesRepository } from "../../repositories/IEmployeesRepository";
 
 export class RemoveEmployeeUseCase {
@@ -11,7 +12,7 @@ export class RemoveEmployeeUseCase {
     const employee = this.employeesRepository.findById(id);
 
     if (!employee) {
-      throw new Error("Error: Employee not found.").message;
+      throw new AppError("Error: Employee not found.");
     }
 
     this.employeesRepository.remove(id);

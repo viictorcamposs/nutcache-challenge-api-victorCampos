@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { Employee } from "../../model/Employee";
 import { IEmployeesRepository } from "../../repositories/IEmployeesRepository";
 
@@ -12,7 +13,7 @@ export class GetEmployeeUseCase {
     const employee = this.employeesRepository.findById(id);
 
     if (!employee) {
-      throw new Error("Error: Employee not found.").message;
+      throw new AppError("Error: Employee not found.");
     }
 
     return employee;
