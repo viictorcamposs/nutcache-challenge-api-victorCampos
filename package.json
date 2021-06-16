@@ -4,7 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/server.js",
+    "postinstall": "tsc",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+  },
+  "engines": {
+    "node": ">= 14.17.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
