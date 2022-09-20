@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listEmployeesController = void 0;
+var EmployeesRepository_1 = require("../../repositories/EmployeesRepository");
+var ListEmployeesController_1 = require("./ListEmployeesController");
+var ListEmployeesUseCase_1 = require("./ListEmployeesUseCase");
+var employeesRepository = EmployeesRepository_1.EmployeesRepository.getInstance();
+var listEmployeesUseCase = new ListEmployeesUseCase_1.ListEmployeesUseCase(employeesRepository);
+var listEmployeesController = new ListEmployeesController_1.ListEmployeesController(listEmployeesUseCase);
+exports.listEmployeesController = listEmployeesController;

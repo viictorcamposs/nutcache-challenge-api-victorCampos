@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.editEmployeeController = void 0;
+var EmployeesRepository_1 = require("../../repositories/EmployeesRepository");
+var EditEmployeeController_1 = require("./EditEmployeeController");
+var EditEmployeeUseCase_1 = require("./EditEmployeeUseCase");
+var employeesRepository = EmployeesRepository_1.EmployeesRepository.getInstance();
+var editEmployeeUseCase = new EditEmployeeUseCase_1.EditEmployeeUseCase(employeesRepository);
+var editEmployeeController = new EditEmployeeController_1.EditEmployeeController(editEmployeeUseCase);
+exports.editEmployeeController = editEmployeeController;
